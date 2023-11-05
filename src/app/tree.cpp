@@ -3,6 +3,7 @@
 #include <cinttypes>
 #include <codecvt>
 #include <cwchar>
+#include <fstream>
 #include "strnatcmp.hpp"
 #include "tree.h"
 
@@ -583,7 +584,7 @@ void Tree::handleNewFile(const string &input)
         if (!create_directory(dest))
             api->async_execute_lua("tree.print_message(...)", {"Failed to create dir!"});
     } else {
-        boost::filesystem::ofstream(dest.string());
+        std::ofstream(dest.string());
     }
 
     if (item.opened_tree) {
